@@ -182,7 +182,7 @@ class EventsAnnouncer(commands.Cog):
             try:
                 message = self.format_message(member, join_config["message"], invite)
                 await channel.send(**message)
-            except:
+            except discord.HTTPException:
                 pass
 
     @commands.Cog.listener()
@@ -203,7 +203,7 @@ class EventsAnnouncer(commands.Cog):
             try:
                 message = self.format_message(member, leave_config["message"])
                 await channel.send(**message)
-            except:
+            except discord.HTTPException:
                 pass
 
 

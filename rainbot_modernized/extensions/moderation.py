@@ -23,7 +23,6 @@ from utils.helpers import (
     parse_time,
 )
 from utils.paginator import Paginator
-from utils.constants import EMOJIS
 from core.logging import ModLogger
 
 
@@ -1240,7 +1239,7 @@ class Moderation(commands.Cog):
             try:
                 duration_delta = parse_time(duration)
                 punishment_config["duration"] = int(duration_delta.total_seconds())
-            except:
+            except Exception:
                 embed = create_embed(
                     title=f"{EMOJIS['error']} Invalid Duration",
                     description="Use format like: 1h, 30m, 2d",
@@ -1284,7 +1283,7 @@ class Moderation(commands.Cog):
 
         try:
             await ctx.message.delete()
-        except:
+        except discord.HTTPException:
             pass
 
         if member:
@@ -1305,7 +1304,7 @@ class Moderation(commands.Cog):
         await asyncio.sleep(3)
         try:
             await msg.delete()
-        except:
+        except discord.HTTPException:
             pass
 
     @commands.command(name="lockdown")
@@ -1362,7 +1361,7 @@ class Moderation(commands.Cog):
             try:
                 duration_delta = parse_time(duration)
                 seconds = int(duration_delta.total_seconds())
-            except:
+            except Exception:
                 embed = create_embed(
                     title=f"{EMOJIS['error']} Invalid Duration",
                     description="Use format like: 10s, 5m (max 6h)",

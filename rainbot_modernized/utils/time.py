@@ -75,7 +75,7 @@ class Time(HumanTime):
     def __init__(self, argument: str) -> None:
         try:
             o = ShortTime(argument)
-        except:
+        except Exception:
             super().__init__(argument)
         else:
             self.dt = o.dt
@@ -225,7 +225,7 @@ class UserFriendlyTime(commands.Converter):
                 remaining = argument[:begin].strip()
 
             return await self.check_constraints(ctx, now, remaining)
-        except:
+        except Exception:
             raise
 
 
